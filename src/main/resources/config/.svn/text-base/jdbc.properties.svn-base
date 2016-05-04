@@ -1,0 +1,9 @@
+jdbc.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=localhost
+jdbc.port=3306
+jdbc.db=barcode
+jdbc.user=root
+jdbc.password=root
+
+db.jndi=java\:comp/env/jdbc/ScottMavenDB

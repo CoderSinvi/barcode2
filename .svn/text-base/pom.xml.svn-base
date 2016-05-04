@@ -1,0 +1,160 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.barcode</groupId>
+  <artifactId>barcode</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>barcode Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+	<org.springframework.version>3.2.6.RELEASE</org.springframework.version>
+	<org.springframework.spring-security-core.version>3.2.3.RELEASE</org.springframework.spring-security-core.version>
+	<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+	<jstl.version>1.2</jstl.version>
+	<junit.version>4.11</junit.version>
+	<jetty.version>8.1.16.v20140903</jetty.version>
+    <mavenComplier.version>3.1</mavenComplier.version>
+	<jdk.version>1.6</jdk.version>
+	<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
+	<jsp-api.version>2.0</jsp-api.version>
+	<org.freemarker.version>2.3.19</org.freemarker.version>
+	<jackson.version>1.9.10</jackson.version>
+	<fastjson.version>1.1.26</fastjson.version>
+	<org.hibernate.version>3.6.8.Final</org.hibernate.version>
+  </properties>
+  
+  <dependencies>
+  	<!-- Spring 3 dependencies -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	
+	<!-- Hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>${org.hibernate.version}</version>
+	</dependency>
+	
+	<!-- jstl -->
+	<dependency>
+		<groupId>jstl</groupId>
+		<artifactId>jstl</artifactId>
+		<version>${jstl.version}</version>
+	</dependency>
+		
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+	<dependency>
+	  <groupId>org.freemarker</groupId>
+	  <artifactId>freemarker</artifactId>
+	  <version>${org.freemarker.version}</version>
+	</dependency>
+	<!-- Servlet -->
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>${jsp-api.version}</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<!-- mysql -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.18</version>
+	</dependency>
+		
+  </dependencies>
+  <build>
+    <finalName>barcode</finalName>
+    <!-- Add this directly after the <build>-opening tag -->
+	<resources>
+		<resource>
+			<filtering>true</filtering>
+			<directory>src/test/resources</directory>
+			<includes>
+				<include>**/*.properties</include>
+			</includes>
+			<excludes>
+				<exclude>**/*local.properties</exclude>
+			</excludes>
+		</resource>
+		<resource>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+		</resource>
+	</resources>
+	
+	
+    <plugins>
+		<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <version>2.2</version>
+	        <configuration>
+	        	<warName>barcode</warName>
+	        </configuration>
+    	</plugin>
+    	<plugin>
+		  <groupId>org.mortbay.jetty</groupId>
+		  <artifactId>jetty-maven-plugin</artifactId>
+		  <version>${jetty.version}</version>
+		  <configuration>
+		    <scanIntervalSeconds>10</scanIntervalSeconds>
+		    <webApp>
+		      <contextPath>/barcode</contextPath>
+		    </webApp>
+		    <connectors>
+		       <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+		          <port>8080</port>
+		          <maxIdleTime>60000</maxIdleTime>
+		       </connector>
+		     </connectors>
+		  </configuration>
+		</plugin>
+	</plugins>
+  </build>
+</project>
